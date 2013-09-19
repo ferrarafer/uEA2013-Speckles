@@ -47,6 +47,22 @@
 			section tag. -->
 			<section id="themes">
 				<h1>Un Sistema Digital para Procesar Señales Speckle en Tiempo Real</h1>
+				<p>
+					<span style="color: #13daec">F. Ferrara</span> -
+					<span style="color: #13daec">E. Cozzolino</span> -
+					<span style="color: #13daec">E. Todorovich</span> -
+					<span style="color: #13daec">M. Vázquez</span>
+				</p>
+				<p>
+					<span style="color: #13daec">G. Bioul</span> -
+					<span style="color: #13daec">A. Dai Pra</span> -
+					<span style="color: #13daec">I. Passoni</span>
+				</p>
+				<p>
+					<img src="assets/img/ufasta.png" alt="logo UFASTA">
+					<img src="assets/img/unicen.png" alt="logo UNICEN">
+					<img src="assets/img/unmdp.png" alt="logo UNICEN">
+				</p>
 				<!-- <p>Elegir el tema que prefiera para la presentación</p> -->
 				<p style="margin-top: 100px;">
 					<!-- These work only if getQueryHash().theme is called from Reveal.initialize()-->
@@ -190,12 +206,12 @@
 					<h2>Marco Teórico<h2>
 				</section>
 
-				<section>
+				<!-- <section>
 					<h3>Speclke</h3>
 					<p>
 						Cuando una fuente de <span style="color: #2aef44">luz coherente</span> ilumina una <span style="color: #2aef44">superficie no pulida</span>, la rugosidad de la superficie provoca un fenómeno de interferencia aleatoria, conocido como "speckle". Este fenómeno se origina por las diferentes longitudes de recorrido entre puntos dispersos de la superficie y una fuente de observación.
 					</p>
-				</section>
+				</section> -->
 
 				<section>
 					<h3>Actividad de la imagen</h3>
@@ -459,12 +475,192 @@ regiones}
 					<h2>Experimentos</h2>
 				</section>
 
+				<section>
+					<div id="tabla1" class="estimacion-tiempos">
+		                <table >
+		                    <tr>
+		                        <td rowspan="2"># Pixeles</td>
+		                        <td colspan="3"># Frames</td>
+		                    </tr>
+		                    <tr>
+		                    	<td>Indicadores</td>
+		                    	<td>64</td>
+		                    	<td>128</td>
+		                    </tr>
+		                    <tr>
+		                    	<td rowspan="5">128 x 128</td>
+		                    	<td><strong>t<sub>p</sub></strong> (ns)</td>
+		                    	<td>4.02</td>
+		                    	<td>4.04</td>
+		                    </tr>
+		                    <tr>
+		                    	<td><strong>t<sub>p,opt</sub></strong> (ns)</td>
+		                    	<td>3.48</td>
+		                    	<td>3.48</td>
+		                    </tr>
+		                    <tr>
+		                    	<td><strong>#ff</strong></td>
+		                    	<td>311</td>
+		                    	<td>331</td>
+		                    </tr>
+		                    <tr>
+		                    	<td><strong>#LUT</strong></td>
+		                    	<td>377</td>
+		                    	<td>398</td>
+		                    </tr>
+		                    <tr>
+		                    	<td><strong>#RAMB</strong></td>
+		                    	<td>4 + 3</td>
+		                    	<td>5 + 2</td>
+		                    </tr>
+		                    <tr>
+		                    	<td rowspan="5">256 x 256</td>
+		                    	<td><strong>t<sub>p</sub></strong> (ns)</td>
+		                    	<td>4.86</td>
+		                    	<td>4.87</td>
+		                    </tr>
+		                    <tr>
+		                    	<td><strong>t<sub>p,opt</sub></strong> (ns)</td>
+		                    	<td>3.52</td>
+		                    	<td>3.52</td>
+		                    </tr>
+		                    <tr>
+		                    	<td><strong>#ff</strong></td>
+		                    	<td>319</td>
+		                    	<td>334</td>
+		                    </tr>
+		                    <tr>
+		                    	<td><strong>#LUT</strong></td>
+		                    	<td>397</td>
+		                    	<td>416</td>
+		                    </tr>
+		                    <tr>
+		                    	<td><strong>#RAMB</strong></td>
+		                    	<td>20 + 1</td>
+		                    	<td>22 + 1</td>
+		                    </tr>
+		                    <tr>
+		                    	<td rowspan="5">512 x 512</td>
+		                    	<td><strong>t<sub>p</sub></strong> (ns)</td>
+		                    	<td>5.42</td>
+		                    	<td>5.43</td>
+		                    </tr>
+		                    <tr>
+		                    	<td><strong>t<sub>p,opt</sub></strong> (ns)</td>
+		                    	<td>3.52</td>
+		                    	<td>3.52</td>
+		                    </tr>
+		                    <tr>
+		                    	<td><strong>#ff</strong></td>
+		                    	<td>329</td>
+		                    	<td>349</td>
+		                    </tr>
+		                    <tr>
+		                    	<td><strong>#LUT</strong></td>
+		                    	<td>404</td>
+		                    	<td>423</td>
+		                    </tr>
+		                    <tr>
+		                    	<td><strong>#RAMB</strong></td>
+		                    	<td>80 + 1</td>
+		                    	<td>88 + 1</td>
+		                    </tr>
+		                </table>
+		            </div>
+				</section>
+
+				<section>
+					<div id="tabla2" class="potencia-energia">
+		                <table >
+		                    <tr>
+		                        <td rowspan="2"># Pixeles</td>
+		                        <td colspan="3"># Frames</td>
+		                    </tr>
+		                    <tr>
+		                    	<td><b>Indicadores</b></td>
+		                    	<td><b>64</b></td>
+		                    	<td><b>128</b></td>
+		                    </tr>
+		                    <tr>
+		                    	<td rowspan="2"><b>128 x 128</b></td>
+		                    	<td><strong>Power</strong> (W)</td>
+		                    	<td>1.129</td>
+		                    	<td>1.131</td>
+		                    </tr>
+		                    <tr>
+		                    	<td><strong>Energia por pixel</strong> (nJ)</td>
+		                    	<td>4.516</td>
+		                    	<td>4.524</td>
+		                    </tr>
+		                    <tr>
+		                    	<td rowspan="2"><b>256 x 256</b></td>
+		                    	<td><strong>Power</strong> (W)</td>
+		                    	<td>1.085</td>
+		                    	<td>1.089</td>
+		                    </tr>
+		                    <tr>
+		                    	<td><strong>Energia por pixel</strong> (nJ)</td>
+		                    	<td>4.34</td>
+		                    	<td>4.356</td>
+		                    </tr>
+		                    <tr>
+		                    	<td rowspan="2"><b>512 x 512</b></td>
+		                    	<td><strong>Power</strong> (W)</td>
+		                    	<td>1.113</td>
+		                    	<td>1.117</td>
+		                    </tr>
+		                    <tr>
+		                    	<td><strong>Energia por pixel</strong> (nJ)</td>
+		                    	<td>4.452</td>
+		                    	<td>4.468</td>
+		                    </tr>
+		                </table>
+		            </div>
+				</section>
+
+				<section>
+					<ul>
+						<li>FPGA Virtex-6 de Xilinx (xc6vlx130t ff484 -3)</li>
+						<li>RAMB36E1 + RAMB18E1</li>
+						<li>El analisis de potencia y energia solo incluye el core</li>
+						<li>La frecuencia del circuito es de 250 MHz (periodo de 4 ns) para la estimación</li>
+						<li>Mayor número de pixeles -> Mayor consumo area / Mayor consumo memoria embebida</li>
+						<li>Mayor número de frames -> Mayor consumo area</li>
+						
+					</ul>
+				</section>
+
+				<section>
+					<ul>
+						<li>El analisis del camino critico permite un compromiso entre el periodo de reloj y la latencia</li>
+						<li>Latencia de 12 ciclos de reloj para 8 bits de precision</li>
+						<li><span style="color: #2aef44">1000 fps</span> para frames de 512 x 512</li>
+					</ul>
+				</section>
+
 			</section>
 
 			<section>
 
 				<section>
 					<h2>Conclusiones</h2>
+				</section>
+
+				<section>
+					<ul>
+						<li>El descriptor FGD fue reformulado como RFGD para un circuito digital</li>
+						<li>Circuito compuesto por</li>
+						<ul>
+							<li>1 sumador</li>
+							<li>6 comparadores</li>
+							<li>1 nivel de logica adicional</li>
+							<li>9 restadores</li>
+							<li>9 multiplexores</li>
+						</ul>
+						<li>Diseñado mediante una descripcion portable en VHDL</li>
+						<li>Realiza el calculo de granos en tiempo real de señales THSP</li>
+						<li>Los mejores resultados son obtenidos si la memoria es implementada en el mismo chip</li>
+					</ul>
 				</section>
 
 			</section>
@@ -483,8 +679,8 @@ regiones}
 	<!-- Pesentation Details -->
 	<div class="presentation-details">
 		<p>
-			Speckles &bull; uEA 2013 &bull; F. Ferrara /
-			<a href="https://twitter.com/ferrarafer" title="Follow me on Twitter">@ferrarafer</a>
+			Speckles &bull; uEA 2013 &bull; F. Ferrara
+			<!-- / <a href="https://twitter.com/ferrarafer" title="Follow me on Twitter">@ferrarafer</a> -->
 		</p>
 	</div>
 
