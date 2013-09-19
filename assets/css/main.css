@@ -1,0 +1,21 @@
+.presentation-details {
+	position: absolute;
+	left: 10px;
+	bottom: 10px;
+	font: .9em sans-serif;
+	color: #444;
+	padding: 20px 0 20px 60px;
+
+	background-size: 50px 50px;
+}
+.presentation-details p {
+	color: #AAA999;
+}
+.presentation-details a, .presentation-details a:visited, .presentation-details a:active {
+	color: #a4cbd0;
+	text-decoration: none;
+}
+.presentation-details a:hover {
+	color: #FFF;
+	text-decoration: none;
+}

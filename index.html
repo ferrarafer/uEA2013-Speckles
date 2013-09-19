@@ -1,0 +1,524 @@
+
+<!-- Turns out switching styles is just an href but this shows how to use the reveal.js configure() method -->
+
+<!doctype html>
+<html lang="en">	
+<head>
+	<meta charset="utf-8">
+	<title>uEA2013 - Speckles</title>
+	<!-- On iOS Safari, run in full-screen mode -->
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	
+
+	<!-- Provide basic styles for controls, slides, etc. -->
+	<link rel="stylesheet" href="reveal.js/css/reveal.css">
+	
+	<!-- Give the overall presentation a distinct appearance-->
+	<link rel="stylesheet" href="reveal.js/css/theme/default.css" id="theme">
+
+	<!-- For syntax highlighting -->
+	<link rel="stylesheet" href="reveal.js/lib/css/zenburn.css">
+
+	<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+	<script>
+		document.write( '<link rel="stylesheet" href="reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+	</script>
+
+	<!--Add support for earlier versions of Internet Explorer >
+	<!--[if lt IE 9]>
+	<script src="reveal.js/lib/js/html5shiv.js"></script>
+	<![endif]-->
+
+	<link rel="stylesheet" href="assets/css/main.css">
+	
+</head>
+
+
+<body>
+
+	<!-- Wrap the entire slide show in a div using the "reveal" class. -->
+	<div class="reveal">
+	
+		<!-- Wrap all  slides in a div using the "slides" class. -->
+		<div class="slides">
+		
+			<!-- Each slide using a standard HTML
+			section tag. -->
+			<section id="themes">
+				<h1>Un Sistema Digital para Procesar Señales Speckle en Tiempo Real</h1>
+				<!-- <p>Elegir el tema que prefiera para la presentación</p> -->
+				<p style="margin-top: 100px;">
+					<!-- These work only if getQueryHash().theme is called from Reveal.initialize()-->
+					<!-- <a href="?theme=sky#/themes">Sky</a> |
+					<a href="?theme=beige#/themes">Beige</a> |
+					<a href="?theme=simple#/themes">Simple</a> |
+					<a href="?theme=serif#/themes">Serif</a> |
+					<a href="?theme=night#/themes">Night</a> |
+					<a href="?#/themes">Default</a> -->
+				</p>
+			</section>
+
+			<section>
+                <h2>Contenido</h2>
+                <ul class="fragment">
+                	<li>¿Quienes somos?</li>
+                    <li>Introducción</li>
+                    <li>Marco Teórico</li>
+                    <li>Algoritmos</li>
+                    <li>Circuitos Digitales</li>
+                    <li>Experimnetos</li>
+                    <li>Conclusiones</li>
+                </ul>
+            </section>
+
+            <section>
+            	<section>
+                	<h2>¿Quienes somos?</h2>
+                </section>
+
+                <section>
+                    <h3>Universidad FASTA</h3>
+                    <p class="fragment" data-fragment-index="0">
+                		<span style="color: #FC6A31">Fernando Ferrara</span>
+                	</p>
+                	<p class="fragment" data-fragment-index="0">
+                		<span style="color: #FC6A31">Ezequiel Cozzolino</span>
+                	</p>
+                	<p class="fragment" data-fragment-index="0">
+                		<span style="color: #FC6A31">Elias Todorovich</span>
+                	</p>
+                	<p class="fragment" data-fragment-index="0">
+                		<span style="color: #FC6A31">Martín Vázquez</span>
+                	</p>
+                	<p class="fragment" data-fragment-index="0">
+                		<span style="color: #FC6A31">Gery Bioul</span>
+                	</p>
+                	<p class="fragment" data-fragment-index="0">
+                		<span style="color: #FC6A31">Lucía I. Passoni</span>
+                	</p>
+                </section>
+
+                <section>
+                    <h3>Universidad Nacional del Centro de la Provincia de Buenos Aires</h3>
+                	<p class="fragment" data-fragment-index="0">
+                		<span style="color: #FC6A31">Elias Todorovich</span>
+                	</p>
+                	<p class="fragment" data-fragment-index="0">
+                		<span style="color: #FC6A31">Martín Vázquez</span>
+                	</p>
+                	<p class="fragment" data-fragment-index="0">
+                		<span style="color: #FC6A31">Gery Bioul</span>
+                	</p>
+                </section>
+
+                <section>
+                    <h3>Universidad Nacional de Mar del Plata</h3>
+                    <p class="fragment" data-fragment-index="0">
+                		<span style="color: #FC6A31">Ana L. Dai Pra</span>
+                	</p>
+                	<p class="fragment" data-fragment-index="0">
+                		<span style="color: #FC6A31">Lucía I. Passoni</span>
+                	</p>
+                </section>
+            </section>
+
+            <section>
+
+            	<section>
+            		<h2>Introducción</h2>
+            	</section>
+
+				<section>
+					<h3>Speckle</h3>
+	                <p>
+	                	<span style="color: #2aef44">Fenómeno óptico</span> que se produce cuando una luz láser reflejada desde una superficie iluminada se muestra como un patrón granular de alto contraste.
+	                </p>
+				</section>
+
+				<section>
+					<h3>Speckle</h3>
+	                <p>
+	                	Cuando hay algun tipo de actividad en la superficie, el patron de speckle varia en el tiempo produciendo un <span style="color: #2aef44">fenómeno fisico</span> llamado <span style="color: #2aef44">"de ebullición"</span> donde los speckles desaparecen y aparecen sin ningún desplazamiento significativo. La actividad esta dada por el cambio de las propiedades de la muestra.
+	                </p>
+				</section>
+
+				<section>
+					<h3>Speckle</h3>
+	                <p>
+	                	Este comportamiento puede darse en fenomenos como:
+	                </p>
+	                <ul>
+	                	<li class="fragment">Viabilidad de semillas</li>
+	                    <li class="fragment">Actividad bacteriana</li>
+	                    <li class="fragment">Golpes en frutas</li>
+	                    <li class="fragment">Secado de pintura</li>
+	                    <li class="fragment">Corrosión</li>
+	                </ul>
+				</section>
+
+				<section>
+					<h3>Secuencia de imagenes</h3>
+	                <p>
+	                	Capturadas por la cámara y procesadas por una computadora de proposito general para <span style="color: #2aef44">caracterizar los fenomenos</span>, utilizando <span style="color: #2aef44">descriptores</span> que analizan el comportamiento de cada pixel.
+	                </p>
+				</section>
+
+				<section>
+					<h3>Descriptor Granular Difuso (<span style="color: #2aef44">FGD</span>)</h3>
+	                <ul>
+	                	<li class="fragment">Mayor eficacia</li>
+	                    <li class="fragment">Menor complejidad computacional</li>
+	                </ul>
+				</section>
+
+				<section>
+					<h3>Rough Fuzzy Granular Descriptor (<span style="color: #2aef44">RFGD</span>)</h3>
+	                <ul>
+	                    <li class="fragment">Conceptos de teoria de Conjuntos Aproximados</li>
+	                    <li class="fragment">Conceptos de teoria de Conjuntos Difusos</li>
+	                    <li class="fragment">Pensado para operar en tiempo real</li>
+	                    <li class="fragment">Pensado para sistemas digitales</li>
+	                </ul>
+				</section>
+
+			</section>
+
+			<section>
+
+				<section>
+					<h2>Marco Teórico<h2>
+				</section>
+
+				<section>
+					<h3>Speclke</h3>
+					<p>
+						Cuando una fuente de <span style="color: #2aef44">luz coherente</span> ilumina una <span style="color: #2aef44">superficie no pulida</span>, la rugosidad de la superficie provoca un fenómeno de interferencia aleatoria, conocido como "speckle". Este fenomeno se origina por las diferentes longitudes de recorrido entre puntos dispersos de la superficie y una fuente de observación.
+					</p>
+				</section>
+
+				<section>
+					<h3>Actividad de la imagen</h3>
+					<p>
+						Variaciones de intensidad de cada pixel dentro de una secuencia de imagenes en un intervalo dado de tiempo.
+					</p>
+					<p>
+						Se da cuando hay cambios significativos en la intensidad en las señales. La noción de <span style="color: #2aef44">variación de intensidad significativa</span> es dificil de definir. Depende de la aplicación y puede ser subjetiva e incierta.
+					</p>
+				</section>
+
+				<section>
+					<h3>THSP</h3>
+					<p>
+						La variación de la intensidad de cada pixel a través de la secuencia de imágenes capturadas a intervalos de tiempo fijos determina una señal unidimensional llamada "<span style="color: #2aef44">Historia en el Tiempo del Patrón Speckle</span>".
+					</p>
+				</section>
+
+				<section>
+					<h3>THSP</h3>
+					<img src="assets/img/THSP.png" alt="Diagrama THSP">
+					<p>
+						<small>Diagrama tipico THSP</small>
+					</p>
+				</section>
+
+			</section>
+
+			<section>
+
+				<section>
+					<h2>Algoritmos</h2>
+				</section>
+
+				<section>
+					<h3>Calculo de Histograma</h3>
+					<p>
+						Sirve para estimar la distribución de la intensidad.
+					</p>
+					<pre><code data-trim contenteditable>
+   {El histograma en escala de grises, h, tiene 256 bits}
+   for i in 0 to 255 do
+       h[i] = 0
+   end for
+   for i in 0 to Nr-1 do
+       for j in 0 to Nc-1 do
+           h[pixel[i,j]] = h[pixel[i,j]] + 1
+       end for
+   end for
+					</code></pre>
+				</section>
+
+				<section>
+					<h3>Calculo de Histograma</h3>
+					<p>
+						Se contabiliza el numero de veces que se repiten los diferentes valores de intensidad en los (<i>N<sub>r</sub> x N<sub>c</sub></i>) pixeles de la primera imagen capturada.
+					</p>
+					<p>
+						La intensidad puede tomar cualquier valor en el intervalo [0, 255] puesto que las imágenes son capturadas en escala de grises y se representan con 8 bits.
+					</p>
+				</section>
+
+				<section>
+					<h3>Calculo de los limites de las regiones difusas</h3>
+					<pre><code data-trim contenteditable>
+{Z es el número de funciones de pertenencia 
+superpuestas generando 2Z-1 regiones}
+{El rango de valores de intensidad [0, 255] es
+particionado de tal manera que un número similar de
+elementos puede ser incluido en cada una de las 2Z-1
+regiones}
+{region[0]=0; region[2Z-1]=255}
+   Nm = Np / (2Z-1) {Nm: #pixeles en cada región}
+   sp = 0 {auxiliar}
+   i = 0
+   for k in 1 to 2Z-2 do
+       while sp < Nm.k do
+           sp = sp + h(i)
+           i = i + 1
+       end while
+       region[k] = i
+   end for
+					</code></pre>
+				</section>
+
+				<section>
+					<h3>Calculo de los limites de las regiones difusas</h3>
+					<p>
+						Dos valores son necesarios para definir cada región. Estos valores estan entre [0, 255], siendo 0 el limite izquierdo de la primer región y 255 el limite derecho de la última región.
+					</p>
+					<p>
+						Los limites de las regiones son definidos de tal forma que cada una de las regiones contenga el mismo número (lo mas cercano posible) de píxeles.
+					</p>
+				</section>
+
+				<section>
+					<h3>Calculo de la granularidad</h3>
+					<pre><code data-trim contenteditable>
+{Nf es el numero de Np-pixel frames (=2^b)}
+{Un contador de gránulos f(i,j) por pixel}
+   for i in 0 to Nr, j in 0 to Nc do
+       f[i,j] = 0
+   end for
+   k = 0
+   while k < Nf-1 do {frame actual}
+       for i in 0 to Nr-1 do {fila actual del frame}
+           for j in 0 to Nc-1 do {columna actual del frame}
+               calcular N[i,j](k+1) {conteo de gránulos}
+               f[i,j] = f[i,j] + N[i,j](k+1)
+               A[i,j] = f[i,j] / (k+1)
+           end for
+       end for
+   end while
+					</code></pre>
+				</section>
+
+				<section>
+					<h3>Calculo de la granularidad</h3>
+					<p>
+						Se utiliza un algoritmo iterativo ya que los pixeles arriban desde la camara en serie.
+					</p>
+					<p>
+						Para cada pixel de entrada se calcula la region difusa a la cual pertenece y se compara con la region anterior del mismo pixel.
+					</p>
+				</section>
+
+			</section>
+
+			<section>
+
+				<section>
+					<h2>Circuitos Digitales</h2>
+				</section>
+
+				<section>
+					<h3>Calculo Indice de Actividad</h3>
+					<img src="assets/img/TopLevel.png" alt="Indice de Actividad">
+				</section>
+
+				<section>
+					<h3>Calculo Indice de Actividad</h3>
+					<ul>
+	                	<li class="fragment" data-fragment-index="1"><span style="color: #FC6A31">4 Modulos Principales</span></li>
+	                    <ul>
+		                	<li class="fragment" data-fragment-index="2">Calc_Hist</li>
+		                    <li class="fragment" data-fragment-index="2">Calc_Regions</li>
+		                    <li class="fragment" data-fragment-index="2">Calc_Granules</li>
+		                    <li class="fragment" data-fragment-index="2">Divider</li>
+		                </ul>
+	                	<li class="fragment" data-fragment-index="3"><span style="color: #FC6A31">3 Memorias Principales</span></li>
+	                	<ul>
+		                	<li class="fragment" data-fragment-index="4">Mem_Hist</li>
+		                    <li class="fragment" data-fragment-index="4">Mem_Count</li>
+		                    <li class="fragment" data-fragment-index="4">Mem_Flags</li>
+		                </ul>
+	                </ul>
+				</section>
+
+				<section>
+					<h3>Calculo Indice de Actividad</h3>
+					<ul>
+	                	<li class="fragment" data-fragment-index="1"><span style="color: #2aef44">Señales de Entrada</span></li>
+	                	<ul>
+		                	<li class="fragment" data-fragment-index="2">start</li>
+		                    <li class="fragment" data-fragment-index="2">pxIn</li>
+		                    <li class="fragment" data-fragment-index="2">pxInAddr</li>
+		                    <li class="fragment" data-fragment-index="2">frIn</li>
+		                </ul>
+	                    <li class="fragment" data-fragment-index="3"><span style="color: #2aef44">Señales de Salida</span></li>
+	                    <ul>
+		                	<li class="fragment" data-fragment-index="4">Q</li>
+		                    <li class="fragment" data-fragment-index="4">pxOutAddr</li>
+		                    <li class="fragment" data-fragment-index="4">frOut</li>
+		                </ul>
+	                </ul>
+				</section>
+
+				<section>
+					<h3>Calculo del Histograma</h3>
+					<ul>
+						<li>Se analiza el primer frame capturado</li>
+						<li>Se almacenan los 256 registros binarios en MEM_HIST</li>
+						<li>La memoria MEM_HIST se direcciona por la intensidad del pixel [0, 255]</li>
+						<li>El numero de pixeles en esta direccion se incrementa en uno</li>
+						<li>En el siguiente ciclo se escribe el resultado en el mismo registro</li>
+						<li>Se trabaja de manera segmentada siendo MEM_HIST de doble puerto</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Calculo de los Limites de las Regiones</h3>
+					<img src="assets/img/CalcRegions.png" alt="Calculo Limites Regiones">
+				</section>
+
+				<section>
+					<h3>Calculo de los Limites de las Regiones</h3>
+					<p>
+						Los siguientes pasos se repiten 2Z-2 veces, siendo Z la cantidad de zonas (3).
+					</p>
+					<ul>
+						<li>Se accede secuencialmente a MEM_HIST</li>
+						<li>Se acumula los valores de registros binarios en el registro AccData hasta que supera N<sub>m</sub></li>
+						<li>La direccion actual se guarda en el registro <span style="color: #2aef44">Region</span> correspondiente.</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Calculo de Granulos</h3>
+					<img src="assets/img/CalcGranules.png" alt="Calculo de Granulos">
+				</section>
+
+				<section>
+					<h3>Calculo de Granulos</h3>
+					<ul>
+						<li>El codigo de zona, de la imagen anterior, del pixel que entra se lee de MEM_FLAGS</li>
+						<li>Se compara el codigo de zona anterior con el actual</li>
+						<li>Si la intensidad cambia a una nueva zona, en el siguiente ciclo de reloj</i>
+							<ul>
+								<li>Se aumenta el contador del granulo correspondiente en MEM_COUNT</li>
+								<li>Se actualiza el codigo actual de zona en MEM_FLAGS</li>
+							</ul>
+
+					</ul>
+					<p><br></p>
+					<p>
+						Independientemente de que haya o no cambio de zona, se continua leyendo los pixeles con normalidad ya que las memorias son de doble puerto
+					</p>
+				</section>
+
+				<section>
+					<h3>Calculo de Division</h3>
+					<p>
+						Se utiliza el algoritmo de division por restauracion en punto fijo y se adapta para calcular el <span style="color: #FC6A31">AI<sub>ij</sub></span> por cada pixel en cada nuevo frame.
+					</p>
+					<p>
+						El circuito trabaja en pipeline para poder comenzar el calculo de un nuevo cociente en cada nuevo ciclo de reloj.
+					</p>
+					<p>
+						No se aplica normalizacion a los operandos, por lo que algunos ceros iniciales se podrian obtener para los cocientes.
+					</p>
+				</section>
+
+				<section>
+					<h3>Calculo de Division</h3>
+					<ul>
+						<li>El indice de actividad se encuentra en [0, 2]</li>
+						<li>Con p bits de precision fraccionaria, se puede utilizar un formato XX.X___X</li>
+						<li>Se genera un cociente exacto de la forma X.X___X para los resultados menores a 2</li>
+						<li>Se aproxima el cociente a 1.1___1 cuando el cociente es exactamente 2</li>
+						<li>La latencia del divisor es de p + 2 ciclos de reloj</li>
+						<li>La latencia del calculo de granulos es de 2 ciclos de reloj</li>
+						<li>La latencia del indice de actividad es p + 4 ciclos de reloj</li>
+					</ul>
+				</section>
+
+			</section>
+
+			<section>
+
+				<section>
+					<h2>Experimentos</h2>
+				</section>
+
+			</section>
+
+			<section>
+
+				<section>
+					<h2>Conclusiones</h2>
+				</section>
+
+			</section>
+
+			<section>
+				<h2>¿Preguntas?</h2>
+			</section>
+
+			<section>
+				<h2>Agradecimientos</h2>
+				<p>Este trabajo ha sido parcialmente financiado mediante fondos de proyectos de investigación de la Universidad FASTA y la Universidad Nacional del Centro UNCPBA, y a través de los proyectos PICT-2008-1430 y PICT-2009-0041 de la Agencia Nacional de Promoción Científica y Tecnológica.</p>
+			</section>
+		</div>
+	</div>
+
+	<!-- Pesentation Details -->
+	<div class="presentation-details">
+		<p>
+			Speckles &bull; uEA 2013 &bull; F. Ferrara /
+			<a href="https://twitter.com/ferrarafer" title="Follow me on Twitter">@ferrarafer</a>
+		</p>
+	</div>
+
+	<!-- Speed up scripts; make all style sheets responsive, etc. -->
+	<!-- Not part of reveal.js. See http://headjs.com -->
+	<script src="reveal.js/lib/js/head.min.js"></script>
+	
+	<!-- Use a minimized version of reveal.js to speed page loading. -->
+	<script src="reveal.js/js/reveal.min.js"></script>
+
+	<script>
+		
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			history: true,
+			center: true,
+
+			theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+			transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+			// Optional libraries used to extend on reveal.js
+			dependencies: [
+				{ src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: 'reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: 'reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+				{ src: 'reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+				{ src: 'reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+			]
+		});
+
+	</script>
+
+
+</body>
+</html>
