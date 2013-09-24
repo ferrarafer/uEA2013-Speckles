@@ -144,13 +144,6 @@
 					<h2>Marco Teórico<h2>
 				</section>
 
-				<!-- <section>
-					<h3>Speclke</h3>
-					<p>
-						Cuando una fuente de <span style="color: #2aef44">luz coherente</span> ilumina una <span style="color: #2aef44">superficie no pulida</span>, la rugosidad de la superficie provoca un fenómeno de interferencia aleatoria, conocido como "speckle". Este fenómeno se origina por las diferentes longitudes de recorrido entre puntos dispersos de la superficie y una fuente de observación.
-					</p>
-				</section> -->
-
 				<section>
 					<h3>Actividad de la imagen</h3>
 					<p>
@@ -193,98 +186,6 @@
 					<h3>Diagrama de Flujo</h3>
 					<img width="550" height="650" src="assets/img/Algoritmo02.png" alt="Diagrama de Flujo">
 				</section>
-
-				<!-- <section>
-					<h3>Calculo de Histograma</h3>
-					<p>
-						Sirve para estimar la distribución de la intensidad.
-					</p>
-					<pre><code data-trim contenteditable>
-   {El histograma en escala de grises, h, tiene 256 bits}
-   for i in 0 to 255 do
-       h[i] = 0
-   end for
-   for i in 0 to Nr-1 do
-       for j in 0 to Nc-1 do
-           h[pixel[i,j]] = h[pixel[i,j]] + 1
-       end for
-   end for
-					</code></pre>
-				</section>
-
-				<section>
-					<h3>Calculo de Histograma</h3>
-					<p>
-						Se contabiliza el numero de veces que se repiten los diferentes valores de intensidad en los (<i>N<sub>r</sub> x N<sub>c</sub></i>) pixeles de la primera imagen capturada.
-					</p>
-					<p>
-						La intensidad puede tomar cualquier valor en el intervalo [0, 255] puesto que las imágenes son capturadas en escala de grises y se representan con 8 bits.
-					</p>
-				</section>
-
-				<section>
-					<h3>Calculo de los limites de las regiones difusas</h3>
-					<pre><code data-trim contenteditable>
-{Z es el número de funciones de pertenencia 
-superpuestas generando 2Z-1 regiones}
-{El rango de valores de intensidad [0, 255] es
-particionado de tal manera que un número similar de
-elementos puede ser incluido en cada una de las 2Z-1
-regiones}
-{region[0]=0; region[2Z-1]=255}
-   Nm = Np / (2Z-1) {Nm: #pixeles en cada región}
-   sp = 0 {auxiliar}
-   i = 0
-   for k in 1 to 2Z-2 do
-       while sp < Nm.k do
-           sp = sp + h(i)
-           i = i + 1
-       end while
-       region[k] = i
-   end for
-					</code></pre>
-				</section>
-
-				<section>
-					<h3>Calculo de los limites de las regiones difusas</h3>
-					<p>
-						Dos valores son necesarios para definir cada región. Estos valores están entre [0, 255], siendo 0 el limite izquierdo de la primer región y 255 el limite derecho de la última región.
-					</p>
-					<p>
-						Los limites de las regiones son definidos de tal forma que cada una de las regiones contenga el mismo número (lo mas cercano posible) de píxeles.
-					</p>
-				</section>
-
-				<section>
-					<h3>Calculo de la granularidad</h3>
-					<pre><code data-trim contenteditable>
-{Nf es el numero de Np-pixel frames (=2^b)}
-{Un contador de gránulos f(i,j) por pixel}
-   for i in 0 to Nr, j in 0 to Nc do
-       f[i,j] = 0
-   end for
-   k = 0
-   while k < Nf-1 do {frame actual}
-       for i in 0 to Nr-1 do {fila actual del frame}
-           for j in 0 to Nc-1 do {columna actual del frame}
-               calcular N[i,j](k+1) {conteo de gránulos}
-               f[i,j] = f[i,j] + N[i,j](k+1)
-               A[i,j] = f[i,j] / (k+1)
-           end for
-       end for
-   end while
-					</code></pre>
-				</section>
-
-				<section>
-					<h3>Calculo de la granularidad</h3>
-					<p>
-						Se utiliza un algoritmo iterativo ya que los pixeles arriban desde la cámara en serie.
-					</p>
-					<p>
-						Para cada pixel de entrada se calcula la región difusa a la cual pertenece y se compara con la región anterior del mismo pixel.
-					</p>
-				</section> -->
 
 			</section>
 
@@ -624,7 +525,6 @@ regiones}
 	<div class="presentation-details">
 		<p>
 			Speckles &bull; uEA 2013 &bull; F. Ferrara
-			<!-- / <a href="https://twitter.com/ferrarafer" title="Follow me on Twitter">@ferrarafer</a> -->
 		</p>
 	</div>
 
